@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     container_name: postgres-positions
     ports:
-      - '3336:5432'
+      - '6510:5432'
     volumes:
       - postgresPositionsDB:/var/lib/postgresql/data
     env_file:
@@ -14,7 +14,7 @@ services:
     image: redis:alpine
     container_name: redis-positions
     ports:
-      - '6510:6399'
+      - '6399:6379'
     volumes:
       - redisPositionsDB:/data
 volumes:

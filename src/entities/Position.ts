@@ -18,8 +18,11 @@ export class Position {
     @Column()
     main_work: string
 
+    @Column('text', { nullable: true, array: true })
+    required_skills: string[]
+
     @Column()
-    salary: string
+    salary: number
 
     @Column()
     benefits: string
