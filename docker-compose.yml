@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-positions
+    ports:
+      - '3336:5432'
+    volumes:
+      - postgresPositionsDB:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+
+  redis:
+    image: redis:alpine
+    container_name: redis-positions
+    ports:
+      - '6510:6399'
+    volumes:
+      - redisPositionsDB:/data
+volumes:
+  postgresPositionsDB:
+  redisPositionsDB:
