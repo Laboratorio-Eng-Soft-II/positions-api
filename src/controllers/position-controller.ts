@@ -12,7 +12,7 @@ export class PositionController {
 
     async allFromSingleCompany(request: Request, response: Response, next: NextFunction) {
         const cnpj = request.params.cnpj
-        const company = await this.positionRepository.findOne({
+        const company = await this.positionRepository.find({
             where: { cnpj }
         })
 
