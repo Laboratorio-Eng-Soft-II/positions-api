@@ -4,8 +4,6 @@ import { Routes } from "./routes"
 import config from 'config';
 import validateEnv from './utils/validate-env';
 import { AppDataSource } from './utils/data-source';
-import redisClient from './utils/connect-redis';
-
 
 AppDataSource.initialize()
   .then(async () => {
@@ -40,10 +38,8 @@ AppDataSource.initialize()
   
     // HEALTH CHECKER
     app.get('/api/healthchecker', async (_, res: Response) => {
-      const message = await redisClient.get('try');
       res.status(200).json({
-        status: 'success',
-        message,
+        status: 'success'
       });
     });
 
