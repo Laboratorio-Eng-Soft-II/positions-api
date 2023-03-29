@@ -11,6 +11,11 @@ export const Routes = [{
     controller: PositionController,
     action: "allFromSingleCompany"
 }, {
+    method: "get",
+    route: "/positions/get/:id",
+    controller: PositionController,
+    action: "one"
+}, {
     method: "post",
     route: "/positions",
     controller: PositionController,

@@ -22,6 +22,18 @@ export class PositionController {
         return company
     }
 
+    async one(request: Request, response: Response, next: NextFunction) {
+        const id = request.params.id
+        const position = await this.positionRepository.findOne({
+            where: { id }
+        })
+
+        if (!position) {
+            return "Position not found!"
+        }
+        return position
+    }
+
     async save(request: Request, response: Response, next: NextFunction) {
         const { cnpj,
                 type,
