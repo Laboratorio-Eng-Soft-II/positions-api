@@ -25,4 +25,9 @@ export const Routes = [{
     route: "/positions/:id",
     controller: PositionController,
     action: "remove"
+}, {
+    method: "post",
+    route: "/positions/:id",
+    controller: PositionController,
+    action: "approveOrRejectPosition"
 }]

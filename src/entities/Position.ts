@@ -27,4 +27,7 @@ export class Position {
     @Column()
     benefits: string
 
+    @Column({ nullable: true, default: 'pending' })
+    approved: string
+
 }

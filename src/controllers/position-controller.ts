@@ -50,7 +50,8 @@ export class PositionController {
             main_work,
             required_skills,
             salary,
-            benefits
+            benefits,
+            approved: 'pending'
         })
 
         return this.positionRepository.save(position)
@@ -67,6 +68,20 @@ export class PositionController {
         await this.positionRepository.remove(positionToRemove)
 
         return "Position has been removed!"
+    }
+
+    async approveOrRejectPosition(request: Request, response: Response, next: NextFunction){
+        const id = request.params.id
+        const { approved } = request.body
+        let position = await this.positionRepository.findOneBy({ id })
+
+        if (!position) {
+            return "This position does not exist!"
+        }
+
+        position.approved = approved
+
+        return await this.positionRepository.save(position)
     }
 
 }
