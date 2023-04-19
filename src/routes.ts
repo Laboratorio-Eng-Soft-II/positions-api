@@ -30,4 +30,9 @@ export const Routes = [{
     route: "/positions/:id",
     controller: PositionController,
     action: "approveOrRejectPosition"
+}, {
+    method: "post",
+    route: "/enrollment/:id",
+    controller: PositionController,
+    action: "enroll"
 }]

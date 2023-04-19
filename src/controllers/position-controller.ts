@@ -1,10 +1,12 @@
 import { AppDataSource } from '../utils/data-source'
 import { NextFunction, Request, Response } from "express"
 import { Position } from "../entities/Position"
+import { Enrollment } from '../entities/Enrollment'
 
 export class PositionController {
 
     private positionRepository = AppDataSource.getRepository(Position)
+    private enrollmentRepository = AppDataSource.getRepository(Enrollment)
 
     async all(request: Request, response: Response, next: NextFunction) {
         return this.positionRepository.find()
@@ -70,7 +72,7 @@ export class PositionController {
         return "Position has been removed!"
     }
 
-    async approveOrRejectPosition(request: Request, response: Response, next: NextFunction){
+    async approveOrRejectPosition(request: Request, response: Response, next: NextFunction) {
         const id = request.params.id
         const { approved } = request.body
         let position = await this.positionRepository.findOneBy({ id })
@@ -82,6 +84,22 @@ export class PositionController {
         position.approved = approved
 
         return await this.positionRepository.save(position)
+    }
+
+    async enroll(request: Request, response: Response, next: NextFunction) {
+        const position_id = request.params.id
+        const { 
+            student_nusp,
+            cv_link,
+            linkedin_link
+         } = request.body
+
+         return await this.enrollmentRepository.save({
+            position_id,
+            student_nusp,
+            cv_link,
+            linkedin_link
+          })
     }
 
 }

@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Position } from "../entities/Position"
 import config from 'config';
+import { Enrollment } from '../entities/Enrollment';
 
 const postgresConfig = config.get<{
   host: string;
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
   type: 'postgres',
   synchronize: true,
   logging: false,
-  entities: [Position],
+  entities: [Position, Enrollment],
   migrations: ['src/migrations/**/*{.ts,.js}'],
   subscribers: ['src/subscribers/**/*{.ts,.js}'],
 });
