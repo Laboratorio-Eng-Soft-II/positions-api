@@ -94,12 +94,14 @@ export class PositionController {
             linkedin_link
          } = request.body
 
-         return await this.enrollmentRepository.save({
+         const enrollment = Object.assign(new Enrollment(), {
             position_id,
             student_nusp,
             cv_link,
             linkedin_link
-          })
+        })
+
+         return await this.enrollmentRepository.save(enrollment)
     }
 
 }
